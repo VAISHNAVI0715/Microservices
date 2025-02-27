@@ -1,5 +1,6 @@
 package com.v.firstjobapp.job;
 
+import com.v.firstjobapp.company.Company;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -39,9 +40,10 @@ public class JobController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteJob(@PathVariable Long id){
         boolean deleted  = jobService.deleteJobByid(id);
-        if(deleted)
-            return new ResponseEntity<>("Job deleted successfully!", HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(deleted){
+            return new ResponseEntity<>("Job deleted successfully!", HttpStatus.OK);}
+        else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
     }
 
     //@PutMapping("/jobs/{id}")

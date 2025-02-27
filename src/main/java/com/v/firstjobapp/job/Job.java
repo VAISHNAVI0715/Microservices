@@ -1,12 +1,25 @@
 package com.v.firstjobapp.job;
 
+import com.v.firstjobapp.company.Company;
+import jakarta.persistence.*;
+
+@Entity
+//@Table(name = "job_table")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    @ManyToOne
+    private Company company;
+
+    public Job() {
+    }
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
         this.id = id;
@@ -15,6 +28,14 @@ public class Job {
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getMaxSalary() {
@@ -64,4 +85,6 @@ public class Job {
     public void setLocation(String location) {
         this.location = location;
     }
+
+
 }
